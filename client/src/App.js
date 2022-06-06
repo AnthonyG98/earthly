@@ -6,6 +6,7 @@ import Dashboard from "./components/Dashboard";
 import Setup from "./components/Setup";
 import Submit from "./components/Submit";
 import Profile from "./components/Profile";
+import Messages from "./components/Messages";
 import Footer from "./components/Footer";
 function App() {
       return (
@@ -18,6 +19,7 @@ function App() {
                               <Route path="/setup" element={<Setup />} />
                               <Route path="/submit" element={<Submit />} />
                               <Route path="/profile" element={<Profile />} />
+                              <Route path="/messages" element={<Messages />} />
                         </Routes>
                   </Router>
                   <Footer />

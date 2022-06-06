@@ -54,7 +54,10 @@ function Dashboard() {
                               <i class="fas fa-globe-americas"></i>
                               <h1>EARTH.LY</h1>
                         </Link>
-                        <div>
+                        <div className="message-icon">
+                              <Link to="/messages">
+                                    <i class="fas fa-comments-alt"></i>
+                              </Link>
                               <Link to="/profile">
                                     <Image
                                           className="dash-profileImg"

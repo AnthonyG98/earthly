@@ -52,19 +52,19 @@ function Profile() {
 
                         axios.put(`http://localhost:3001/users/profile/${id}`, imageData).then(
                               (response) => {
-                                    const changePostPicure = () => {
-                                          const postImageData = {
-                                                userId: id,
-                                                profile_picture: fileName,
-                                          };
-                                          axios.put(
-                                                `http://localhost:3001/post/profile/${id}`,
-                                                postImageData
-                                          ).then((response) => {
-                                                console.log(response);
-                                          });
+                                    //  const changePostPicure = () => {
+                                    //  };
+                                    //  changePostPicure();
+                                    const postImageData = {
+                                          userId: id,
+                                          profile_picture: fileName,
                                     };
-                                    changePostPicure();
+                                    axios.put(
+                                          `http://localhost:3001/post/profile/${id}`,
+                                          postImageData
+                                    ).then((response) => {
+                                          console.log(response);
+                                    });
                               }
                         );
                   }

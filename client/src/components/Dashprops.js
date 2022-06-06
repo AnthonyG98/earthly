@@ -6,7 +6,7 @@ import Commentprops from "./Commentprops";
 function Dashprops(props) {
       let history = useNavigate();
       const [likes, setLikes] = useState(props.likes);
-      const [likeStatus, setLikeStatus] = useState(false);
+      const [likeStatus, setLikeStatus] = useState();
       const [comment, setComment] = useState();
       const [commentById, setCommentById] = useState();
       const [profileImg, setProfileImg] = useState();
@@ -18,38 +18,11 @@ function Dashprops(props) {
             );
       };
       const getThisPost = (postId) => {
-            axios.get(`http://localhost:3001/post/check/${postId}`).then((response) => {
-                  if (response.data.status === true) {
-                        return setLikeStatus(true);
-                  }
-            });
-            if (likeStatus === true) {
-                  return alert("null");
-            }
             axios.get(`http://localhost:3001/post/like/${postId}`).then((response) => {
-                  setLikes(response.data.likes + 1);
-                  const likeData = {
-                        likes: response.data.likes + 1,
-                  };
-                  axios.put(`http://localhost:3001/post/addLike/${postId}`, likeData).then(
-                        (response) => {
-                              setLikeStatus(true);
-                        }
-                  );
-
-                  const likeStatusData = {
-                        username: localStorage.getItem("username"),
-                        status: "true",
-                        id: postId,
-                  };
-                  axios.post("http://localhost:3001/post/check", likeStatusData).then(
-                        (response) => {
-                              console.log(response);
-                        }
-                  );
-                  return likes;
+                  let statusLikesToUpdate = response.data.likes;
             });
       };
+      console.log(likeStatus);
       const postComments = (postId) => {
             const commentData = {
                   comment: comment,
@@ -83,8 +56,9 @@ function Dashprops(props) {
             if (!localStorage.getItem("username")) {
                   history("/");
             }
+
             getUser();
-      }, []);
+      }, [likeStatus]);
       return (
             <div className="dash-props-container">
                   <div className="props-bio">

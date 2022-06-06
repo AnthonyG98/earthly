@@ -6,6 +6,9 @@ function Login() {
 
       const [username, setUsername] = useState();
       const [password, setPassword] = useState();
+      const [error, setError] = useState();
+      const [usernameError, setUsernameError] = useState();
+      const [passwordError, setPasswordError] = useState();
 
       const onLogin = () => {
             const loginData = {
@@ -16,6 +19,8 @@ function Login() {
                   if (response.data === "Logged in") {
                         localStorage.setItem("username", username);
                         history("/dashboard");
+                  } else if (response.data.error) {
+                        return setError(response.data.error);
                   }
             });
       };
@@ -28,6 +33,8 @@ function Login() {
                               </div>
                         </div>
                         <div className="login-container">
+                              <p className="valid-err">{error}</p>
+
                               <label>
                                     Username
                                     <input
