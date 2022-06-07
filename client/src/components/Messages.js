@@ -42,6 +42,8 @@ function Messages() {
                                                       ? el.receiver_profile_picture
                                                       : el.sender_profile_picture
                                           }
+                                          chatId={el.chatId}
+                                          //get length of chat to get last message for left inbox
                                           getChat={() => {
                                                 axios.get(
                                                       `http://localhost:3001/message/chat/${el.chatId}`

@@ -486,6 +486,8 @@ body {
       color: #fff;
       font-size: 1.25em;
       z-index: 999;
+      position: absolute;
+      bottom: 0;
 }
 .footer-container p {
       margin-left: 10px;
@@ -511,13 +513,17 @@ body {
 }
 .right-msg-container {
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      flex-direction: row;
       height: 80vh;
       border-left: 1px solid rgb(214, 214, 214);
       padding-left: 1em;
       overflow-y: scroll;
       width: 100%;
+}
+.messages {
+       display: flex;
+       margin-top: 80px;
+       flex-direction: column;
 }
 .right-msg-container::-webkit-scrollbar {
       width: 10px;
@@ -652,7 +658,7 @@ body {
        display: flex;
        align-items: baseline;
        color: rgb(174, 174, 174);
-       margin-top: 80px;
+       margin-top: 0px;
 }
 @media only screen and (max-width: 600px) {
       .bio-container {

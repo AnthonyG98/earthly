@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Image } from "cloudinary-react";
+import ChatProps from "./ChatProps";
 import axios from "axios";
 function MessagesProps(props) {
+      const getAllChatsForInbox = () => {
+            axios.get(`http://localhost:3001/message/chat/${props.chatId}`).then((response) => {
+                  console.log(response);
+            });
+      };
+      useEffect(() => {
+            getAllChatsForInbox();
+      }, []);
       return (
             <div className="msg-props-container">
                   <div className="msg-props-img">
@@ -11,6 +20,7 @@ function MessagesProps(props) {
                               publicId={props.profileImg}
                               onClick={props.getChat}
                         />{" "}
+                        <p>{}</p>
                   </div>
             </div>
       );
