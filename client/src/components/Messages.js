@@ -26,7 +26,6 @@ function Messages() {
                   setSearchUserId(response.data.id);
             });
       };
-      //Needs chat Id btn
       const getMyInbox = (thisUserId) => {
             axios.get(`http://localhost:3001/message/more/${thisUserId}`).then((response) => {
                   console.log(response);
