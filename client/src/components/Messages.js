@@ -21,9 +21,13 @@ function Messages() {
       const searchForUser = () => {
             axios.get(`http://localhost:3001/users/${searchUser}`).then((response) => {
                   console.log(response);
+                  if (response.data === null) {
+                        alert("Sorry, we're not sure who you're looking for.");
+                  }
                   setResults(response.data.username);
                   setSenderProfileImage(response.data.profile_picture);
                   setSearchUserId(response.data.id);
+                  generateString(8);
             });
       };
       const getMyInbox = (thisUserId) => {

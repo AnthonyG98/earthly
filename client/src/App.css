@@ -617,7 +617,7 @@ body {
        border: 1px solid rgb(198, 198, 198) !important;
        font-size: 1.25em;
        margin-left: 15px;
-       color: #fff;
+       color: rgb(164, 164, 164);
 }
 .send-msg-btn {
        background-color: transparent;
@@ -651,7 +651,8 @@ body {
 .chat-container {
        display: flex;
        align-items: baseline;
-       color: #fff;
+       color: rgb(174, 174, 174);
+       margin-top: 80px;
 }
 @media only screen and (max-width: 600px) {
       .bio-container {
