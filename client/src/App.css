@@ -645,6 +645,9 @@ body {
        height: 50px;
        border-radius: 50%;
 }
+.inboxImg:hover {
+       cursor: pointer;
+}
 .chat-container {
        display: flex;
        align-items: baseline;
