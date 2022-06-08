@@ -487,7 +487,6 @@ body {
       font-size: 1.25em;
       z-index: 999;
       position: absolute;
-      bottom: 0;
 }
 .footer-container p {
       margin-left: 10px;
@@ -624,6 +623,8 @@ body {
        font-size: 1.25em;
        margin-left: 15px;
        color: rgb(164, 164, 164);
+       position: fixed;
+       bottom: 15%;
 }
 .send-msg-btn {
        background-color: transparent;

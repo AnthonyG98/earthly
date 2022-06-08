@@ -111,9 +111,6 @@ function Messages() {
                   UserId: userId,
             };
             axios.post("http://localhost:3001/message", messageData).then((response) => {
-                  console.log(response);
-                  console.log(searchUserId);
-                  console.log(profileImg);
                   axios.get(`http://localhost:3001/message/chat/${chatId}`).then((response) => {
                         setSearchUser(null);
                         setUserId(null);

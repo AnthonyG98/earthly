@@ -5,7 +5,11 @@ import axios from "axios";
 function MessagesProps(props) {
       const getAllChatsForInbox = () => {
             axios.get(`http://localhost:3001/message/chat/${props.chatId}`).then((response) => {
-                  console.log(response);
+                  console.log(
+                        response.data.map((el) => {
+                              return el.message;
+                        })
+                  );
             });
       };
       useEffect(() => {
@@ -20,7 +24,7 @@ function MessagesProps(props) {
                               publicId={props.profileImg}
                               onClick={props.getChat}
                         />{" "}
-                        <p>{}</p>
+                        <p>{props.inboxMsg}</p>
                   </div>
             </div>
       );
