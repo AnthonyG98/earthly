@@ -14,6 +14,8 @@ function Messages() {
       const [image, setImage] = useState();
       const [senderProfileImage, setSenderProfileImage] = useState();
       const [searchUserId, setSearchUserId] = useState();
+      const [searchUsername, setSearchUsername] = useState();
+      const [senderUsername, setSenderUsername] = useState();
       const [inbox, setInbox] = useState();
       const [receivedInbox, setReceivedInbox] = useState();
       const [chat, setChat] = useState();
@@ -27,6 +29,7 @@ function Messages() {
                   setResults(response.data.username);
                   setSenderProfileImage(response.data.profile_picture);
                   setSearchUserId(response.data.id);
+                  setSearchUsername(response.data.username);
                   generateString(8);
             });
       };
@@ -41,6 +44,11 @@ function Messages() {
                                                 thisUserId === el.UserId
                                                       ? el.receiver_profile_picture
                                                       : el.sender_profile_picture
+                                          }
+                                          username={
+                                                thisUserId === el.UserId
+                                                      ? el.receiver_username
+                                                      : el.sender_username
                                           }
                                           chatId={el.chatId}
                                           //get length of chat to get last message for left inbox
@@ -79,7 +87,7 @@ function Messages() {
                   (response) => {
                         setProfileImg(response.data.profile_picture);
                         setUserId(response.data.id);
-                        //  getLeftInbox(response.data.id);
+                        setSenderUsername(response.data.username);
                         getMyInbox(response.data.id);
                         //When click on user inbox pic, set UserId and Sender to null
                   }
@@ -105,6 +113,8 @@ function Messages() {
             const messageData = {
                   message: message,
                   chatId: chatId,
+                  sender_username: senderUsername,
+                  receiver_username: searchUsername,
                   sender_profile_picture: profileImg,
                   receiver_profile_picture: senderProfileImage,
                   sender: searchUserId,

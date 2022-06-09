@@ -24,7 +24,7 @@ function MessagesProps(props) {
                               publicId={props.profileImg}
                               onClick={props.getChat}
                         />{" "}
-                        <p>{props.inboxMsg}</p>
+                        <p>{props.username}</p>
                   </div>
             </div>
       );
