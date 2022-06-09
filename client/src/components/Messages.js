@@ -142,42 +142,6 @@ function Messages() {
                   });
             });
       };
-      const changeProfileImg = () => {
-            const imgFormData = new FormData();
-            imgFormData.append("file", image);
-            imgFormData.append("upload_preset", "fy5ahm9g");
-            axios.post(`https://api.cloudinary.com/v1_1/delktfw1a/image/upload`, imgFormData).then(
-                  (response) => {
-                        const fileName = response.data.public_id;
-                        const imageData = {
-                              profile_picture: fileName,
-                        };
-
-                        axios.put(`http://localhost:3001/users/profile/${userId}`, imageData).then(
-                              (response) => {
-                                    //  const changePostPicure = () => {
-                                    //  };
-                                    //  changePostPicure();
-                                    const postImageData = {
-                                          userId: userId,
-                                          profile_picture: fileName,
-                                    };
-                                    axios.put(
-                                          `http://localhost:3001/post/profile/${userId}`,
-                                          postImageData
-                                    ).then((response) => {
-                                          console.log(response);
-                                    });
-                              }
-                        );
-                  }
-            );
-      };
-      //Open change profile Image on Mobile
-      const mobChangeProfileImg = () => {
-            const changeImgModal = document.getElementById("change-img-on-mob");
-            changeImgModal.style.display = "flex";
-      };
       useEffect(() => {
             getUser();
       }, []);
