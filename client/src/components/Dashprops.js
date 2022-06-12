@@ -73,16 +73,6 @@ function Dashprops(props) {
                         <h1 className="post-title">{props.title}</h1>
                         <p className="post-text">{props.post}</p>
                         <div className="props-icons">
-                              <i
-                                    class="fas fa-thumbs-up"
-                                    id={likeStatus ? "liked" : ""}
-                                    onClick={() => {
-                                          getThisPost(props.id);
-                                    }}
-                              >
-                                    <p className="likes">{likes}</p>
-                              </i>
-                              {/* <i class="fas fa-comment"></i> */}
                               <p
                                     className="get-comments"
                                     onClick={() => {

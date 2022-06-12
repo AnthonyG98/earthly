@@ -16,7 +16,7 @@ function Commentprops(props) {
                               />
                               <p>{props.username}</p>
                         </div>
-                        <p>{props.comment}</p>
+                        <p className="comment-text">{props.comment}</p>
                   </div>
                   <div className="hr"></div>
             </>
