@@ -11,7 +11,7 @@ function Dashboard() {
 
       const getUser = () => {
             axios.get(
-                  `https://earth-ly.herokuapp.com//users/${localStorage.getItem("username")}`
+                  `https://earth-ly.herokuapp.com/users/${localStorage.getItem("username")}`
             ).then((response) => {
                   setProfileImg(response.data.profile_picture);
                   localStorage.setItem("id", response.data.id);

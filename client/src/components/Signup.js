@@ -30,8 +30,6 @@ function Signup() {
                   history("/setup");
             });
       };
-      console.log(passwordError);
-
       return (
             <>
                   <div className="body-container">
