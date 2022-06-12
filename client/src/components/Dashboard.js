@@ -10,15 +10,15 @@ function Dashboard() {
       const [postId, setPostId] = useState();
 
       const getUser = () => {
-            axios.get(`http://localhost:3001/users/${localStorage.getItem("username")}`).then(
-                  (response) => {
-                        setProfileImg(response.data.profile_picture);
-                        localStorage.setItem("id", response.data.id);
-                  }
-            );
+            axios.get(
+                  `https://earth-ly.herokuapp.com//users/${localStorage.getItem("username")}`
+            ).then((response) => {
+                  setProfileImg(response.data.profile_picture);
+                  localStorage.setItem("id", response.data.id);
+            });
       };
       const getPosts = () => {
-            axios.get("http://localhost:3001/post").then((response) => {
+            axios.get("https://earth-ly.herokuapp.com/:3001/post").then((response) => {
                   const mappedId = response.data.map((el) => {
                         return el.id;
                   });

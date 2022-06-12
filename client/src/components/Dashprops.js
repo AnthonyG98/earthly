@@ -11,14 +11,14 @@ function Dashprops(props) {
       const [commentById, setCommentById] = useState();
       const [profileImg, setProfileImg] = useState();
       const getUser = () => {
-            axios.get(`http://localhost:3001/users/${localStorage.getItem("username")}`).then(
-                  (response) => {
-                        setProfileImg(response.data.profile_picture);
-                  }
-            );
+            axios.get(
+                  `https://earth-ly.herokuapp.com/users/${localStorage.getItem("username")}`
+            ).then((response) => {
+                  setProfileImg(response.data.profile_picture);
+            });
       };
       const getThisPost = (postId) => {
-            axios.get(`http://localhost:3001/post/like/${postId}`).then((response) => {
+            axios.get(`https://earth-ly.herokuapp.com/post/like/${postId}`).then((response) => {
                   let statusLikesToUpdate = response.data.likes;
             });
       };
@@ -30,15 +30,17 @@ function Dashprops(props) {
                   PostId: postId,
                   profile_picture: profileImg,
             };
-            axios.post("http://localhost:3001/comments", commentData).then((response) => {
+            axios.post("https://earth-ly.herokuapp.com/comments", commentData).then((response) => {
                   console.log(response);
-                  axios.get(`http://localhost:3001/comments/${postId}`).then((response) => {
-                        console.log(response);
-                  });
+                  axios.get(`https://earth-ly.herokuapp.com/comments/${postId}`).then(
+                        (response) => {
+                              console.log(response);
+                        }
+                  );
             });
       };
       const getPostComments = (post) => {
-            axios.get(`http://localhost:3001/comments/byId/${post}`).then((response) => {
+            axios.get(`https://earth-ly.herokuapp.com/comments/byId/${post}`).then((response) => {
                   setCommentById(
                         response.data.map((postEl) => {
                               return (

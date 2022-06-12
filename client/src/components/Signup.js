@@ -25,7 +25,7 @@ function Signup() {
                   password: password,
                   profile_picture: img,
             };
-            axios.post("http://localhost:3001/users", signUpData).then((response) => {
+            axios.post("https://earth-ly.herokuapp.com/users", signUpData).then((response) => {
                   localStorage.setItem("username", username);
                   history("/setup");
             });

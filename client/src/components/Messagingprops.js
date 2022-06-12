@@ -4,13 +4,15 @@ import ChatProps from "./ChatProps";
 import axios from "axios";
 function MessagesProps(props) {
       const getAllChatsForInbox = () => {
-            axios.get(`http://localhost:3001/message/chat/${props.chatId}`).then((response) => {
-                  console.log(
-                        response.data.map((el) => {
-                              return el.message;
-                        })
-                  );
-            });
+            axios.get(`https://earth-ly.herokuapp.com/message/chat/${props.chatId}`).then(
+                  (response) => {
+                        console.log(
+                              response.data.map((el) => {
+                                    return el.message;
+                              })
+                        );
+                  }
+            );
       };
       useEffect(() => {
             getAllChatsForInbox();

@@ -11,31 +11,31 @@ function Profile() {
       const [id, setId] = useState();
       const [bioText, setBioText] = useState();
       const userPosts = () => {
-            axios.get(`http://localhost:3001/post/allPosts/${localStorage.getItem("id")}`).then(
-                  (response) => {
-                        setMyPosts(
-                              response.data.map((postData) => {
-                                    return (
-                                          <Dashprops
-                                                user={postData.username}
-                                                title={postData.post_title}
-                                                post={postData.post}
-                                                profileImg={postData.profile_picture}
-                                          />
-                                    );
-                              })
-                        );
-                  }
-            );
+            axios.get(
+                  `https://earth-ly.herokuapp.com/post/allPosts/${localStorage.getItem("id")}`
+            ).then((response) => {
+                  setMyPosts(
+                        response.data.map((postData) => {
+                              return (
+                                    <Dashprops
+                                          user={postData.username}
+                                          title={postData.post_title}
+                                          post={postData.post}
+                                          profileImg={postData.profile_picture}
+                                    />
+                              );
+                        })
+                  );
+            });
       };
       const getUser = () => {
-            axios.get(`http://localhost:3001/users/${localStorage.getItem("username")}`).then(
-                  (response) => {
-                        setProfileImg(response.data.profile_picture);
-                        setId(response.data.id);
-                        userPosts();
-                  }
-            );
+            axios.get(
+                  `https://earth-ly.herokuapp.com/users/${localStorage.getItem("username")}`
+            ).then((response) => {
+                  setProfileImg(response.data.profile_picture);
+                  setId(response.data.id);
+                  userPosts();
+            });
             // getUser();
             // window.onload(getUser);
       };
@@ -50,23 +50,24 @@ function Profile() {
                               profile_picture: fileName,
                         };
 
-                        axios.put(`http://localhost:3001/users/profile/${id}`, imageData).then(
-                              (response) => {
-                                    //  const changePostPicure = () => {
-                                    //  };
-                                    //  changePostPicure();
-                                    const postImageData = {
-                                          userId: id,
-                                          profile_picture: fileName,
-                                    };
-                                    axios.put(
-                                          `http://localhost:3001/post/profile/${id}`,
-                                          postImageData
-                                    ).then((response) => {
-                                          console.log(response);
-                                    });
-                              }
-                        );
+                        axios.put(
+                              `https://earth-ly.herokuapp.com/users/profile/${id}`,
+                              imageData
+                        ).then((response) => {
+                              //  const changePostPicure = () => {
+                              //  };
+                              //  changePostPicure();
+                              const postImageData = {
+                                    userId: id,
+                                    profile_picture: fileName,
+                              };
+                              axios.put(
+                                    `https://earth-ly.herokuapp.com/post/profile/${id}`,
+                                    postImageData
+                              ).then((response) => {
+                                    console.log(response);
+                              });
+                        });
                   }
             );
       };

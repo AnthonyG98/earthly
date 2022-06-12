@@ -15,7 +15,7 @@ function Login() {
                   username: username,
                   password: password,
             };
-            axios.post("http://localhost:3001/users/login", loginData).then((response) => {
+            axios.post("https://earth-ly.herokuapp.com/users/login", loginData).then((response) => {
                   if (response.data === "Logged in") {
                         localStorage.setItem("username", username);
                         history("/dashboard");

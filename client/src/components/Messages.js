@@ -21,7 +21,7 @@ function Messages() {
       const [chat, setChat] = useState();
 
       const searchForUser = () => {
-            axios.get(`http://localhost:3001/users/${searchUser}`).then((response) => {
+            axios.get(`https://earth-ly.herokuapp.com/users/${searchUser}`).then((response) => {
                   console.log(response);
                   if (response.data === null) {
                         alert("Sorry, we're not sure who you're looking for.");
@@ -34,64 +34,68 @@ function Messages() {
             });
       };
       const getMyInbox = (thisUserId) => {
-            axios.get(`http://localhost:3001/message/more/${thisUserId}`).then((response) => {
-                  console.log(response);
-                  setInbox(
-                        response.data.map((el) => {
-                              return (
-                                    <MessagesProps
-                                          profileImg={
-                                                thisUserId === el.UserId
-                                                      ? el.receiver_profile_picture
-                                                      : el.sender_profile_picture
-                                          }
-                                          username={
-                                                thisUserId === el.UserId
-                                                      ? el.receiver_username
-                                                      : el.sender_username
-                                          }
-                                          chatId={el.chatId}
-                                          //get length of chat to get last message for left inbox
-                                          getChat={() => {
-                                                axios.get(
-                                                      `http://localhost:3001/message/chat/${el.chatId}`
-                                                ).then((response) => {
-                                                      setSearchUser(null);
-                                                      setUserId(null);
-                                                      setChatId(el.chatId);
-                                                      setChat(
-                                                            response.data.map((el) => {
-                                                                  return (
-                                                                        <ChatProps
-                                                                              profileImg={
-                                                                                    el.chatId ===
-                                                                                    el.UserId
-                                                                                          ? el.receiver_profile_picture
-                                                                                          : el.sender_profile_picture
-                                                                              }
-                                                                              message={el.message}
-                                                                        />
-                                                                  );
-                                                            })
-                                                      );
-                                                });
-                                          }}
-                                    />
-                              );
-                        })
-                  );
-            });
-      };
-      const getUser = () => {
-            axios.get(`http://localhost:3001/users/${localStorage.getItem("username")}`).then(
+            axios.get(`https://earth-ly.herokuapp.com/message/more/${thisUserId}`).then(
                   (response) => {
-                        setProfileImg(response.data.profile_picture);
-                        setUserId(response.data.id);
-                        setSenderUsername(response.data.username);
-                        getMyInbox(response.data.id);
-                        //When click on user inbox pic, set UserId and Sender to null
+                        console.log(response);
+                        setInbox(
+                              response.data.map((el) => {
+                                    return (
+                                          <MessagesProps
+                                                profileImg={
+                                                      thisUserId === el.UserId
+                                                            ? el.receiver_profile_picture
+                                                            : el.sender_profile_picture
+                                                }
+                                                username={
+                                                      thisUserId === el.UserId
+                                                            ? el.receiver_username
+                                                            : el.sender_username
+                                                }
+                                                chatId={el.chatId}
+                                                //get length of chat to get last message for left inbox
+                                                getChat={() => {
+                                                      axios.get(
+                                                            `https://earth-ly.herokuapp.com/message/chat/${el.chatId}`
+                                                      ).then((response) => {
+                                                            setSearchUser(null);
+                                                            setUserId(null);
+                                                            setChatId(el.chatId);
+                                                            setChat(
+                                                                  response.data.map((el) => {
+                                                                        return (
+                                                                              <ChatProps
+                                                                                    profileImg={
+                                                                                          el.chatId ===
+                                                                                          el.UserId
+                                                                                                ? el.receiver_profile_picture
+                                                                                                : el.sender_profile_picture
+                                                                                    }
+                                                                                    message={
+                                                                                          el.message
+                                                                                    }
+                                                                              />
+                                                                        );
+                                                                  })
+                                                            );
+                                                      });
+                                                }}
+                                          />
+                                    );
+                              })
+                        );
                   }
             );
+      };
+      const getUser = () => {
+            axios.get(
+                  `https://earth-ly.herokuapp.com/users/${localStorage.getItem("username")}`
+            ).then((response) => {
+                  setProfileImg(response.data.profile_picture);
+                  setUserId(response.data.id);
+                  setSenderUsername(response.data.username);
+                  getMyInbox(response.data.id);
+                  //When click on user inbox pic, set UserId and Sender to null
+            });
       };
 
       const openResultsContainer = () => {
@@ -120,26 +124,28 @@ function Messages() {
                   sender: searchUserId,
                   UserId: userId,
             };
-            axios.post("http://localhost:3001/message", messageData).then((response) => {
-                  axios.get(`http://localhost:3001/message/chat/${chatId}`).then((response) => {
-                        setSearchUser(null);
-                        setUserId(null);
-                        setChatId(chatId);
-                        setChat(
-                              response.data.map((el) => {
-                                    return (
-                                          <ChatProps
-                                                profileImg={
-                                                      el.chatId === el.UserId
-                                                            ? el.receiver_profile_picture
-                                                            : el.sender_profile_picture
-                                                }
-                                                message={el.message}
-                                          />
-                                    );
-                              })
-                        );
-                  });
+            axios.post("https://earth-ly.herokuapp.com/message", messageData).then((response) => {
+                  axios.get(`https://earth-ly.herokuapp.com/message/chat/${chatId}`).then(
+                        (response) => {
+                              setSearchUser(null);
+                              setUserId(null);
+                              setChatId(chatId);
+                              setChat(
+                                    response.data.map((el) => {
+                                          return (
+                                                <ChatProps
+                                                      profileImg={
+                                                            el.chatId === el.UserId
+                                                                  ? el.receiver_profile_picture
+                                                                  : el.sender_profile_picture
+                                                      }
+                                                      message={el.message}
+                                                />
+                                          );
+                                    })
+                              );
+                        }
+                  );
             });
       };
       useEffect(() => {
