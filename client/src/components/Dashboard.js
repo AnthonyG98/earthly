@@ -18,7 +18,7 @@ function Dashboard() {
             });
       };
       const getPosts = () => {
-            axios.get("https://earth-ly.herokuapp.com/:3001/post").then((response) => {
+            axios.get("https://earth-ly.herokuapp.com/post").then((response) => {
                   const mappedId = response.data.map((el) => {
                         return el.id;
                   });
